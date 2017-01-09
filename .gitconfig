@@ -1,0 +1,24 @@
+[merge]
+	tool = diffuse
+	cmd = "/usr/bin/diffuse $LOCAL $MERGED $REMOTE"
+
+[alias]
+	co = checkout
+	ps = push
+	pl = pull
+	c = commit
+	a = add -i
+	s = status
+	d = diff
+	b = branch
+	l = log --graph  --summary --decorate --all
+	t = tag
+	psall = "! CURBRANCH=`git rev-parse --abbrev-ref HEAD`; git co develop; git ps; git co master; git ps --follow-tags; git co $CURBRANCH"
+	psup = "! git push --set-upstream origin `git rev-parse --abbrev-ref HEAD`"
+
+
+[credential]
+	helper = cache --timeout=3600
+
+[push]
+	default = simple
