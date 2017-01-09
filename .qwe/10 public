@@ -1,0 +1,23 @@
+
+
+
+
+
+
+
+logs                docker-compose logs app
+
+
+version             git tag -l | sort -V | tail -1
+
+
+
+
+
+hotfix              git fetch origin master:master && git flow hotfix start `git tag -l | sort -V | tail -1 | python -c "a=raw_input().split('.'); print('%s.%s' % ('.'.join(a[:-1]), int(a[-1]) + 1))"`
+hotfixed            git flow hotfix finish `git branch | grep -Po "(?<=hotfix\/).+" | sort -V | tail -1` -m "`git branch | grep -Po "(?<=hotfix\/).+" | sort -V | tail -1`"
+releasemajor        git fetch origin master:master && git flow release start `git tag -l | sort -V | tail -1 | python -c "a=raw_input().split('.'); print( '%s.0.0' % (                  int(a[-3]) + 1))"`
+releaseminor        git fetch origin master:master && git flow release start `git tag -l | sort -V | tail -1 | python -c "a=raw_input().split('.'); print('%s.%s.0' % ('.'.join(a[:-2]), int(a[-2]) + 1))"`
+releasepatch        git fetch origin master:master && git flow release start `git tag -l | sort -V | tail -1 | python -c "a=raw_input().split('.'); print(  '%s.%s' % ('.'.join(a[:-1]), int(a[-1]) + 1))"`
+released            git flow release finish `git branch | grep -Po "(?<=release\/).+" | sort -V | tail -1` -m "`git branch | grep -Po "(?<=release\/).+" | sort -V | tail -1`"
+
